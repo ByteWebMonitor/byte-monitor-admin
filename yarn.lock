@@ -213,7 +213,7 @@
     "@turf/helpers" "^6.1.4"
     "d3-color" "^1.4.0"
 
-"@antv/l7@^2.3.0":
+"@antv/l7@^2.3.0", "@antv/l7@^2.5.9":
   "integrity" "sha1-tunDEqDKrFXg7tr6rcyyo2Yiw0E="
   "resolved" "https://registry.nlark.com/@antv/l7/download/@antv/l7-2.5.9.tgz?cache=0&sync_timestamp=1629101796754&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40antv%2Fl7%2Fdownload%2F%40antv%2Fl7-2.5.9.tgz"
   "version" "2.5.9"
@@ -15522,7 +15522,7 @@
     "source-list-map" "^2.0.0"
     "source-map" "~0.6.1"
 
-"webpack@^2.0.0 || ^3.0.0 || ^4.0.0", "webpack@^3.0.0 || ^4.0.0", "webpack@^4.0.0", "webpack@^4.0.0 || ^5.0.0", "webpack@^4.3.0 || ^5.0.0", "webpack@^4.4.0", "webpack@>=1.11.0", "webpack@>=2", "webpack@2 || 3 || 4", "webpack@4.41.0":
+"webpack@^2.0.0 || ^3.0.0 || ^4.0.0", "webpack@^3.0.0 || ^4.0.0", "webpack@^4.0.0", "webpack@^4.0.0 || ^5.0.0", "webpack@^4.3.0 || ^5.0.0", "webpack@^4.4.0", "webpack@^4.41.0", "webpack@>=1.11.0", "webpack@>=2", "webpack@2 || 3 || 4", "webpack@4.41.0":
   "integrity" "sha1-22olS95nF2n3wU6QoaVec2Avxws="
   "resolved" "https://registry.nlark.com/webpack/download/webpack-4.41.0.tgz?cache=0&sync_timestamp=1628620723664&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fwebpack%2Fdownload%2Fwebpack-4.41.0.tgz"
   "version" "4.41.0"
