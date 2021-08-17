@@ -36,6 +36,13 @@ const menus = [
         key: 'role:list:view'
       }
     ]
+  },
+  {
+    path: '/map',
+    name: '地图',
+    key: 'map',
+    icon: HomeOutlined,
+    routes: []
   }
 ]
 

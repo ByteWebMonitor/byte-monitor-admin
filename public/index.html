@@ -10,6 +10,11 @@
   <meta data-n-head="ssr" http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="description" content="byte-monitor-admin" />
   <link rel="apple-touch-icon" href="logo192.png" />
+  <!-- <script src='https://unpkg.com/@antv/l7'></script>
+  <script src='https://unpkg.com/@antv/l7@2.0.11'></script>
+  <script src="https://unpkg.com/@antv/l7-district"></script>
+  <script src='https://unpkg.com/@antv/l7-maps'></script> -->
+
   <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -35,7 +40,7 @@
   <script>
     // 切换为当前主题
     const themeStyle = localStorage.getItem('themeStyle')
-    if(themeStyle) {
+    if (themeStyle) {
       const styles = document.createElement('style')
       styles.id = 'less:color'
       styles.innerText = themeStyle

@@ -6,6 +6,9 @@ import UserEdit from '@/pages/user/edit'
 
 import RoleList from '@/pages/role/list'
 
+import Map from '@/pages/map'
+
+
 /**
  * path 跳转的路径
  * component 对应路径显示的组件
@@ -62,12 +65,19 @@ const menus = [
     ]
   },
   {
+    path: '/map',
+    name: '地图',
+    key: 'map',
+    component: Map
+  },
+  {
     path: '/403',
     name: '暂无权限',
     exact: true,
     key: '/403',
     component: ErrorPage
   }
+  
 ]
 
 export default menus
