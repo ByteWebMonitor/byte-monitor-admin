@@ -1,247 +1,111 @@
-import React, { useEffect, useState } from 'react';
-
-import { Scene } from '@antv/l7';
-import { CountryLayer } from '@antv/l7-district';
-import { Mapbox } from '@antv/l7-maps';
-
+import React, { useEffect, useState } from 'react'
 import './index.less'
+import echarts from 'echarts/lib/echarts'
+import 'echarts/map/js/china'
 
-/** 地图配置 */
-
-// value字段及字段名是可以自定义的
-
-const ProvinceData = [
-  {
-    name: '云南省',
-    code: 530000,
-    value: 0,
-  },
-  {
-    name: '黑龙江省',
-    code: 230000,
-    value: 0,
-  },
-  {
-    name: '贵州省',
-    code: 520000,
-    value: 0,
-  },
-  {
-    name: '北京市',
-    code: 110000,
-    value: 0,
-  },
-  {
-    name: '河北省',
-    code: 130000,
-    value: 0,
-  },
-  {
-    name: '山西省',
-    code: 140000,
-    value: 0,
-  },
-  {
-    name: '吉林省',
-    code: 220000,
-    value: 0,
-  },
-  {
-    name: '宁夏回族自治区',
-    code: 640000,
-    value: 0,
-  },
-  {
-    name: '辽宁省',
-    code: 210000,
-    value: 0,
-  },
-  {
-    name: '海南省',
-    code: 460000,
-    value: 0,
-  },
-  {
-    name: '内蒙古自治区',
-    code: 150000,
-    value: 0,
-  },
-  {
-    name: '天津市',
-    code: 120000,
-    value: 0,
-  },
-  {
-    name: '新疆维吾尔自治区',
-    code: 650000,
-    value: 0,
-  },
-  {
-    name: '上海市',
-    code: 310000,
-    value: 0,
-  },
-  {
-    name: '陕西省',
-    code: 610000,
-    value: 0,
-  },
-  {
-    name: '甘肃省',
-    code: 620000,
-    value: 0,
-  },
-  {
-    name: '安徽省',
-    code: 340000,
-    value: 0,
-  },
-  {
-    name: '香港特别行政区',
-    code: 810000,
-    value: 0,
-  },
-  {
-    name: '广东省',
-    code: 440000,
-    value: 0,
-  },
-  {
-    name: '河南省',
-    code: 410000,
-    value: 0,
-  },
-  {
-    name: '湖南省',
-    code: 430000,
-    value: 0,
-  },
-  {
-    name: '江西省',
-    code: 360000,
-    value: 0,
-  },
-  {
-    name: '四川省',
-    code: 510000,
-    value: 0,
-  },
-  {
-    name: '广西壮族自治区',
-    code: 450000,
-    value: 0,
-  },
-  {
-    name: '江苏省',
-    code: 320000,
-    value: 0,
-  },
-  {
-    name: '澳门特别行政区',
-    code: 820000,
-    value: 0,
-  },
-  {
-    name: '浙江省',
-    code: 330000,
-    value: 0,
-  },
-  {
-    name: '山东省',
-    code: 370000,
-    value: 0,
-  },
-  {
-    name: '青海省',
-    code: 630000,
-    value: 0,
-  },
-  {
-    name: '重庆市',
-    code: 500000,
-    value: 0,
-  },
-  {
-    name: '福建省',
-    code: 350000,
-    value: 0,
-  },
-  {
-    name: '湖北省',
-    code: 420000,
-    value: 0,
-  },
-  {
-    name: '西藏自治区',
-    code: 540000,
-    value: 0,
-  },
-  {
-    name: '台湾省',
-    code: 710000,
-    value: 100,
-  },
-];
-const colors = ['#B8E1FF', '#7DAAFF', '#3D76DD', '#0047A5', '#001D70'];
-
-
-const Map: React.FC = () => {
-  const draw = () => {
-    const scene = new Scene({
-      id: 'china-map',
-      logoVisible: false,
-      map: new Mapbox({
-        center: [116.2825, 39.9],
-        pitch: 0,
-        style: 'blank',
-        zoom: 3,
-        minZoom: 0,
-        maxZoom: 10
-      })
-    });
-
-    scene.on('loaded', () => {
-      new CountryLayer(scene, {
-        data: ProvinceData,
-        joinBy: ['NAME_CHN', 'name'],
-        depth: 1,
-        provinceStroke: '#fff',
-        cityStroke: '#EBCCB4',
-        cityStrokeWidth: 1,
-        /** 地图文字颜色 */
-
-        fill: {
-          color: {
-            field: 'NAME_CHN',
-            values: colors
-          },
-          activeColor:true
+const Map: React.FC = React.memo(() => {
+  const [data, setData] = useState([
+    { name: '北京', value: Math.round(Math.random() * 1000) },
+    { name: '天津', value: Math.round(Math.random() * 1000) },
+    { name: '上海', value: Math.round(Math.random() * 1000) },
+    { name: '重庆', value: Math.round(Math.random() * 1000) },
+    { name: '河北', value: Math.round(Math.random() * 1000) },
+    { name: '河南', value: Math.round(Math.random() * 1000) },
+    { name: '云南', value: Math.round(Math.random() * 1000) },
+    { name: '辽宁', value: Math.round(Math.random() * 1000) },
+    { name: '黑龙江', value: Math.round(Math.random() * 1000) },
+    { name: '湖南', value: Math.round(Math.random() * 1000) },
+    { name: '安徽', value: Math.round(Math.random() * 1000) },
+    { name: '山东', value: Math.round(Math.random() * 1000) },
+    { name: '新疆', value: Math.round(Math.random() * 1000) },
+    { name: '江苏', value: Math.round(Math.random() * 1000) },
+    { name: '浙江', value: Math.round(Math.random() * 1000) },
+    { name: '江西', value: Math.round(Math.random() * 1000) },
+    { name: '湖北', value: Math.round(Math.random() * 1000) },
+    { name: '广西', value: Math.round(Math.random() * 1000) },
+    { name: '甘肃', value: Math.round(Math.random() * 1000) },
+    { name: '山西', value: Math.round(Math.random() * 1000) },
+    { name: '内蒙古', value: Math.round(Math.random() * 1000) },
+    { name: '陕西', value: Math.round(Math.random() * 1000) },
+    { name: '吉林', value: Math.round(Math.random() * 1000) },
+    { name: '福建', value: Math.round(Math.random() * 1000) },
+    { name: '贵州', value: Math.round(Math.random() * 1000) },
+    { name: '广东', value: Math.round(Math.random() * 1000) },
+    { name: '青海', value: Math.round(Math.random() * 1000) },
+    { name: '西藏', value: Math.round(Math.random() * 1000) },
+    { name: '四川', value: Math.round(Math.random() * 1000) },
+    { name: '宁夏', value: Math.round(Math.random() * 1000) },
+    { name: '海南', value: Math.round(Math.random() * 1000) },
+    { name: '台湾', value: Math.round(Math.random() * 1000) },
+    { name: '香港', value: Math.round(Math.random() * 1000) },
+    { name: '澳门', value: Math.round(Math.random() * 1000) }
+  ])
+  const option = {
+    title: {
+      text: '各省份使用情况',
+      subtext: '数据暂虚构',
+      left: 'center'
+    },
+    tooltip: {
+      trigger: 'item'
+    },
+    toolbox: {
+      show: true,
+      orient: 'vertical',
+      left: 'right',
+      top: 'center',
+      feature: {
+        mark: { show: true },
+        dataView: { show: true, readOnly: false },
+        restore: { show: true },
+        saveAsImage: { show: true }
+      }
+    },
+    visualMap: {
+      min: 0,
+      max: 2500,
+      left: 'left',
+      top: 'bottom',
+      text: ['高', '低'], // 文本，默认为数值文本
+      calculable: true
+    },
+    legend: {
+      orient: 'vertical',
+      left: 'left',
+      data: ['热力值']
+    },
+    series: [
+      {
+        name: '热力值',
+        type: 'map',
+        mapType: 'china',
+        roam: false,
+        label: {
+          show: true
         },
-        popup: {
-          enable: true,
-          Html: props => {
-            return `
-              <span>${props.NAME_CHN}</span>
-              <div>${props.value}</div>
-            `;
-          }
-        },
-        autoFit:true
-      });
-    });
-  };
+        data: data
+      },
+    ]
+  }
+  const bond = (option) => {
+    const dom = document.getElementById('echartsMapId')
+    const chart = echarts.init(dom)
+    chart.setOption(option)
+  }
 
   useEffect(() => {
-    draw();
-  }, []);
+    bond(option)
+    // eslint-disable-next-line
+  }, [data])
 
   return (
     <>
-      <div id="china-map" >
-        <div style={{ fontSize: '18px' }}>中国地理位置分布统计图</div>
+      <div id="china-map">
+        <h2>中国地理位置分布统计图</h2>
+        <div id='echartsMapId' style={{ width: '100', height: '25rem' }}/>
       </div>
     </>
-  );
-};
+  )
+})
 
 export default Map
