@@ -4,6 +4,7 @@ import echarts from 'echarts/lib/echarts'
 import 'echarts/map/js/china'
 
 const Map: React.FC = React.memo(() => {
+  // eslint-disable-next-line
   const [data, setData] = useState([
     { name: '北京', value: Math.round(Math.random() * 1000) },
     { name: '天津', value: Math.round(Math.random() * 1000) },
