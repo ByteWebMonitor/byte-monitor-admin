@@ -33,12 +33,14 @@ jobs:
       - name: zip
         run: zip -r build.zip build/*
       # deploy
-      - name: deploy to qingfuwu
-        run:
-          echo ${{ secrets.QINGFUWU_SERVICE_ID }} >> deploy.sh
-          echo ${{ secrets.QINGFUWU_TOKEN_ID }} >> deploy.sh
-          echo "curl -X POST open.qingfuwu.cn/v1/services/\$service_id/hosting/versions -H \"Authorization:Bearer \$token_id\" -F 'file=@./build.zip'" >> deploy.sh
-          bash deploy.sh
+      - name: echo service_id to shell
+        run: echo ${{ secrets.QINGFUWU_SERVICE_ID }} >> ./deploy.sh
+      - name: echo token_id to shell
+        run: echo ${{ secrets.QINGFUWU_TOKEN_ID }} >> ./deploy.sh
+      - name: echo command to shell
+        run: echo "curl -X POST open.qingfuwu.cn/v1/services/\$service_id/hosting/versions -H \"Authorization:Bearer \$token_id\" -F 'file=@./build.zip'" >> ./deploy.sh
+      - name: bash shell
+        run: bash ./deploy.sh
 #      # 利用action把build好的文件上传到服务器/var/www/react-app路径下,需要确认此目录已在服务端创建
 #      - name: deploy file to server
 #        uses: wlixcc/SFTP-Deploy-Action@v1.0
