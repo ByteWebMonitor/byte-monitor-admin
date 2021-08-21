@@ -11,4 +11,11 @@ export default {
   getOs(body:object){
     return $axios.post('https://qcgtsp.app.cloudendpoint.cn/api/device/statXMinRecentPvOsRatio', body)
   },
+  getDays(body:object){
+    return $axios.post('https://qcgtsp.app.cloudendpoint.cn/api/device/statXDayPerDayPv', body)
+  },
+  getHours(body:object){
+    return $axios.post('https://qcgtsp.app.cloudendpoint.cn/api/device/statXHourPerHourPv', body)
+  },
+
 }

@@ -8,10 +8,10 @@ import RoleList from '@/pages/role/list'
 
 import Map from '@/pages/map'
 
-import New from '@/pages/error_show/device_show'
+import Error_log from '@/pages/error_show/error_log'
 
-import Img1 from '@/pages/error_show/performence_show/shuzhuangtu'
-import Img2 from '@/pages/error_show/performence_show/bingzhuangtu'
+import Img1 from '@/pages/error_show/device/shuzhuangtu'
+import Img2 from '@/pages/error_show/device/bingzhuangtu'
 import Test from '@/pages/error_show/error_msg'
 
 
@@ -83,24 +83,24 @@ const menus = [
     routes:[
       {
         path:'/error_show/img',
-        name:'可视化1',
+        name:'一段时间内的访问量',
         exact: true,
         key:'error:img_show',
         component:Img1
       },
       {
         path:'/error_show/img2',
-        name:'可视化2',
+        name:'操作系统与浏览器占比',
         exact: true,
         key:'error:img_show1',
         component:Img2
       },
       {
         path:'/error_show/img3',
-        name:'可视化3',
+        name:'错误日记',
         exact: true,
         key:'error:img_show2',
-        component:Test
+        component:Error_log
       },
     ]
   },
