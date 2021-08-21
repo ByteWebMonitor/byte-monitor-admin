@@ -26,20 +26,14 @@ const App: React.FC<Props> = React.memo(({
   const [form] = Form.useForm()
   const columns = [
     {
-      title: '_id',
-      dataIndex: '_id',
-      key: '_id',
+      title: 'app_id',
+      dataIndex: 'app_id',
+      key: 'app_id',
       align: 'center'
     },
     {
       title: 'admin_name',
       dataIndex: 'admin_name',
-      align: 'center'
-    },
-    {
-      title: 'app_id',
-      dataIndex: 'app_id',
-      key: 'app_id',
       align: 'center'
     },
     {
