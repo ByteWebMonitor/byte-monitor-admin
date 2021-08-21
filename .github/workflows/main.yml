@@ -1,0 +1,35 @@
+name: Continuous Deploy #action名称
+on: [ push ] #在推送的时候运行此action
+
+jobs:
+  deploy_job:
+    runs-on: ubuntu-latest  #运行环境
+    name: build
+    steps:
+      #这里使用了github官方提供的action,checkout项目到虚拟机上
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      # 如果缓存没有命中，安装依赖
+      - name: Install dependencies
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
+        run: yarn --frozen-lockfile
+      - name: Build
+        run: yarn build
+      # 利用action把build好的文件上传到服务器/var/www/react-app路径下,需要确认此目录已在服务端创建
+      - name: deploy file to server
+        uses: wlixcc/SFTP-Deploy-Action@v1.0
+        with:
+          username: 'root' #ssh user name
+          server: ${{ secrets.SERVER_IP }} #引用之前创建好的secret
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }} #引用之前创建好的secret
+          local_path: './build/*'  # 对应我们项目build的文件夹路径
+          remote_path: '/home/service/nginx/static/monitor'
