@@ -2,8 +2,15 @@ import React, { useEffect, useState } from 'react'
 import './index.less'
 import echarts from 'echarts/lib/echarts'
 import 'echarts/map/js/china'
+import { connect } from 'react-redux'
+import * as actions from '@/store/actions'
 
-const Map: React.FC = React.memo(() => {
+interface Props extends ReduxProps {}
+
+const Map: React.FC<Props> = React.memo(({
+                                           storeData: { theme, userInfo = {} },
+                                           setStoreData
+                                         }) => {
   // eslint-disable-next-line
   const [data, setData] = useState([
     { name: '北京', value: Math.round(Math.random() * 1000) },
@@ -99,6 +106,9 @@ const Map: React.FC = React.memo(() => {
     // eslint-disable-next-line
   }, [data])
 
+  useEffect(() => {
+    console.log(theme)
+  }, [theme])
   return (
     <>
       <div id="china-map">
@@ -109,4 +119,7 @@ const Map: React.FC = React.memo(() => {
   )
 })
 
-export default Map
+export default connect(
+  (state) => state,
+  actions
+)(Map)
