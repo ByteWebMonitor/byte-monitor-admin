@@ -5,9 +5,12 @@ import api from '@/api'
 import dayjs from 'dayjs'
 import './DailyPV.less'
 
-interface Props extends ReduxProps {}
+interface DailyPVProps {
+  appId?: String
+}
 
-const DailyPV: React.FC<Props> = React.memo(() => {
+const DailyPV: React.FC<DailyPVProps> = React.memo((props: DailyPVProps) => {
+  const appId = props.appId
   const [selectType, setSelectType] = useState('hour')
   const [hourOrDay, setHourOrDay] = useState(12)
   const [xAxisData, setXAxisData] = useState([])
@@ -33,7 +36,7 @@ const DailyPV: React.FC<Props> = React.memo(() => {
   }
   const getHourPV = () => {
     api.getHours({
-      'app_id': '114514114514abc',
+      'app_id': appId,
       'xHour': hourOrDay
     }).then(res => {
       let temp1 = []
@@ -48,7 +51,7 @@ const DailyPV: React.FC<Props> = React.memo(() => {
   }
   const getDayPV = () => {
     api.getDays({
-      'app_id': '114514114514abc',
+      'app_id': appId,
       'xDay': hourOrDay
     }).then(res => {
       let temp1 = []

@@ -5,13 +5,17 @@ import api from '@/api'
 import './BrowserAndOsPV.less'
 import { toPercent } from '@/utils'
 
-const BrowserAndOsPV: React.FC = React.memo(() => {
+interface BrowserAndOsPVProps {
+  appId?: String
+}
+
+const BrowserAndOsPV: React.FC<BrowserAndOsPVProps> = React.memo((props: BrowserAndOsPVProps) => {
   const radioValueMap = {
     a: 30, b: 720, c: 1440, d: 10080
   }
-  const subtext = ['5分钟以内', '30分钟以内', '一小时以内', '一天以内']
   const initBrowserData = [{ 'value': 0, 'name': 'Chrome', proportion: '0%' }]
   const initOsData = [{ 'value': 0, 'name': 'Windows', proportion: '0%' }]
+  const appId = props.appId
 
   const [time, setTime] = useState(60)
   const [browserData, setBrowserData] = useState(initBrowserData)
@@ -19,11 +23,7 @@ const BrowserAndOsPV: React.FC = React.memo(() => {
 
   const getBrowserOption = () => {
     return {
-      title: {
-        text: '浏览器的使用占比',
-        subtext: subtext[time],
-        left: 'center'
-      },
+      color: ['#f9637a', '#73c0de', '#ea7ccc', '#26a5fb', '#76dec0', '#fac858'],
       tooltip: {
         trigger: 'item'
       },
@@ -35,7 +35,7 @@ const BrowserAndOsPV: React.FC = React.memo(() => {
         {
           name: '访问来源',
           type: 'pie',
-          radius: '50%',
+          radius: ['40%', '70%'],
           data: browserData,
           emphasis: {
             itemStyle: {
@@ -50,11 +50,7 @@ const BrowserAndOsPV: React.FC = React.memo(() => {
   }
   const getOsOption = () => {
     return {
-      title: {
-        text: '操作系统的使用占比',
-        subtext: subtext[time],
-        left: 'center'
-      },
+      color: ['#26a5fb', '#76dec0', '#fac858', '#f9637a', '#73c0de', '#26cbcb', '#ea7ccc'],
       tooltip: {
         trigger: 'item'
       },
@@ -66,7 +62,7 @@ const BrowserAndOsPV: React.FC = React.memo(() => {
         {
           name: '访问来源',
           type: 'pie',
-          radius: '50%',
+          radius: ['40%', '70%'],
           data: osData,
           emphasis: {
             itemStyle: {
@@ -81,7 +77,7 @@ const BrowserAndOsPV: React.FC = React.memo(() => {
   }
   const getBrowser = (time) => {
     api.getBrowser({
-      'app_id': '114514114514abc',
+      'app_id': appId,
       'xMin': time
     }).then(res => {
       let temp = []
@@ -108,14 +104,14 @@ const BrowserAndOsPV: React.FC = React.memo(() => {
   }
   const getOs = (time) => {
     api.getOs({
-      'app_id': '114514114514abc',
+      'app_id': appId,
       'xMin': time
     }).then(res => {
         let temp = []
-      let total = 0
-      res.data.forEach(item => {
-        total += item.num
-      })
+        let total = 0
+        res.data.forEach(item => {
+          total += item.num
+        })
         for (let i = 0; i < res.data.length; i++) {
           temp.push({
             value: res.data[i]['num'],
@@ -204,12 +200,12 @@ const BrowserAndOsPV: React.FC = React.memo(() => {
         </Radio.Group>
       </div>
       <div className={'browserAndOsPV-card-wrapper'}>
-        <Card className={'browserAndOsPV-card'}>
+        <Card className={'browserAndOsPV-card'} title={'浏览器使用占比'} >
           <div className={'browserAndOsPV-echarts-table'}>
             <div className={'browserAndOsPV-echarts'}>
               <MyEcharts
                 option={getBrowserOption()}
-                style={{ width: '100%', height: '300px' }}
+                style={{ width: '100%', height: '200px' }}
               />
             </div>
             <div className={'browserAndOsPV-table'}>
@@ -219,13 +215,13 @@ const BrowserAndOsPV: React.FC = React.memo(() => {
             </div>
           </div>
         </Card>
-        <Card className={'browserAndOsPV-card'}>
+        <Card className={'browserAndOsPV-card'} title={'操作系统使用占比'}>
           <div className={'browserAndOsPV-echarts-table'}>
 
             <div className={'browserAndOsPV-echarts'}>
               <MyEcharts
                 option={getOsOption()}
-                style={{ width: '100%', height: '300px' }}
+                style={{ width: '100%', height: '200px' }}
               />
             </div>
             <div className={'browserAndOsPV-table'}>

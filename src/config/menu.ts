@@ -1,4 +1,4 @@
-import { HomeOutlined } from '@ant-design/icons'
+import { HomeOutlined,AppstoreAddOutlined } from '@ant-design/icons'
 
 const menus = [
   {
@@ -12,7 +12,7 @@ const menus = [
     path: '/app',
     name: 'app管理',
     key: 'app',
-    icon: HomeOutlined,
+    icon: AppstoreAddOutlined,
     routes: []
   },
   {
@@ -21,16 +21,6 @@ const menus = [
     key: 'error',
     type: 'subMenu',
     routes: [
-      {
-        path: '/error_show/img',
-        name: '一段时间内的访问量',
-        key: 'error:visit',
-      },
-      {
-        path: '/error_show/img2',
-        name: '操作系统与浏览器占比',
-        key: 'error:os',
-      },
       {
         path: '/error_show/img3',
         name: '错误日记',

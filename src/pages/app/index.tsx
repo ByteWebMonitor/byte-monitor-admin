@@ -6,6 +6,7 @@ import * as actions from '@/store/actions'
 import { Button, Form, Input, Modal, notification, Table } from 'antd'
 import api from '@/api'
 import dayjs from 'dayjs'
+import { useHistory } from 'react-router-dom'
 
 interface Props extends ReduxProps {}
 
@@ -18,7 +19,7 @@ const App: React.FC<Props> = React.memo(({
     'app_name': '',
     'app_desc': ''
   }
-
+  let history = useHistory();
   const [tableData, setTableData] = useState([])
   const [loading, setLoading] = useState(true)
   const [visible, setVisible] = useState(false)
@@ -65,6 +66,13 @@ const App: React.FC<Props> = React.memo(({
       render: (date) => {
         return dayjs(date).format('YYYY-MM-DD hh:mm:ss')
       }
+    },
+    {
+      title: '操作',
+      key: 'action',
+      render: (record) => (
+        <Button onClick={()=>onClickDetail(record)}>详情</Button>
+      ),
     }
   ]
 
@@ -123,7 +131,10 @@ const App: React.FC<Props> = React.memo(({
     }).catch(err => {
     })
   }
-
+  const onClickDetail = (record) => {
+    history.push(`/detail?app_id=${record.app_id}`)
+    console.log(record.app_id)
+  }
   return (
     <div className={'app-wrapper'}>
       <div className={'button-group'}>
