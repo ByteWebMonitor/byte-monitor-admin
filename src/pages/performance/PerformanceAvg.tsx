@@ -1,8 +1,7 @@
 import MyEcharts from '@/components/common/myEcharts'
 import React, { useEffect, useState } from 'react'
-import { Card, Slider, Space } from 'antd'
+import { Card, Slider } from 'antd'
 import api from '@/api'
-import dayjs from 'dayjs'
 import './PerformanceAvg.less'
 
 interface PerformanceAvgProps {
