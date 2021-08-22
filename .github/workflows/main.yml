@@ -26,7 +26,7 @@ jobs:
       # 如果缓存没有命中，安装依赖
       - name: Install dependencies
         if: steps.yarn-cache.outputs.cache-hit != 'true'
-        run: yarn --frozen-lockfile
+        run: yarn
       - name: Build
         run: yarn build
       # zip压缩
