@@ -4,6 +4,7 @@ import ErrorPage from '@/pages/public/errorPage'
 import ErrorLog from '@/pages/error_show/error_log'
 import Detail from '@/pages/detail/Detail'
 import DeviceList from '@/pages/error_show/device/DeviceList'
+import PerformanceList from '@/pages/performance/PerformanceList'
 
 /**
  * path 跳转的路径
@@ -41,6 +42,12 @@ const menus = [
     name: '设备日志',
     key: 'deviceList',
     component: DeviceList
+  },
+  {
+    path: '/performanceList',
+    name: '性能日志',
+    key: 'performanceList',
+    component: PerformanceList
   },
   {
     path: '/403',

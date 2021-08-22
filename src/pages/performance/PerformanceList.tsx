@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import './DeviceList.less'
+import './PerformanceList.less'
 import { Table, Descriptions } from 'antd'
 import api from '@/api'
 import { url2Map } from '@/utils'
 import { useLocation } from 'react-router-dom'
 
-interface DeviceListProps {
+interface PerformanceListProps {
   appId?: String
 }
 
-const DeviceList: React.FC<DeviceListProps> = (props: DeviceListProps) => {
+const PerformanceList: React.FC<PerformanceListProps> = (props: PerformanceListProps) => {
   const params = url2Map(useLocation().search)
   const appIdFromUrl = params?.get('app_id')
   const limit = 10
@@ -26,21 +26,21 @@ const DeviceList: React.FC<DeviceListProps> = (props: DeviceListProps) => {
       align: 'center'
     },
     {
-      title: 'device_type',
-      dataIndex: 'deviceType',
-      key: 'deviceType',
+      title: 'url',
+      dataIndex: 'url',
+      key: 'url',
       align: 'center'
     },
     {
-      title: 'os',
-      dataIndex: 'OS',
-      key: 'OS',
+      title: 'ttfbTime',
+      dataIndex: 'ttfbTime',
+      key: 'ttfbTime',
       align: 'center'
     },
     {
-      title: 'browser',
-      dataIndex: 'browser',
-      key: 'browser',
+      title: 'loadPageTime',
+      dataIndex: 'loadPageTime',
+      key: 'loadPageTime',
       align: 'center'
     },
     {
@@ -62,8 +62,8 @@ const DeviceList: React.FC<DeviceListProps> = (props: DeviceListProps) => {
   }
 
   useEffect(() => {
-    const getDeviceList = () => {
-      api.getDeviceList({ app_id: appIdFromUrl, skip, limit }).then(res => {
+    const getPerformanceList = () => {
+      api.getPerformanceList({ app_id: appIdFromUrl, skip, limit }).then(res => {
         if (res.data.code === 20000) {
           setTotal(res.data.total)
           setData(res.data.ItemList.map(item => {
@@ -76,20 +76,20 @@ const DeviceList: React.FC<DeviceListProps> = (props: DeviceListProps) => {
         setLoading(false)
       })
     }
-    getDeviceList()
+    getPerformanceList()
     // eslint-disable-next-line
   }, [skip])
 
   const expandedRowRender = (record) => {
     return (
-      <Descriptions column={6}>
-        <Descriptions.Item label="_id" span={2}>{record._id}</Descriptions.Item>
-        <Descriptions.Item label="browserInfo" span={4}>{record.browserInfo}</Descriptions.Item>
-        <Descriptions.Item label="orientation" span={2}>{record.orientation}</Descriptions.Item>
-        <Descriptions.Item label="language" span={4}>{record.language}</Descriptions.Item>
-        <Descriptions.Item label="screenHeight" span={2}>{record.screenHeight}</Descriptions.Item>
-        <Descriptions.Item label="screenWidth" span={2}>{record.screenWidth}</Descriptions.Item>
-      </Descriptions>
+      <div>
+        <Descriptions column={8}>
+          <Descriptions.Item label="_id" span={2}>{record._id}</Descriptions.Item>
+          <Descriptions.Item label="redirectTime" span={2}>{record.redirectTime}</Descriptions.Item>
+          <Descriptions.Item label="dnsTime" span={2}>{record.dnsTime}</Descriptions.Item>
+          <Descriptions.Item label="reqTime" span={2}>{record.reqTime}</Descriptions.Item>
+        </Descriptions>
+      </div>
     )
   }
 
@@ -115,4 +115,4 @@ const DeviceList: React.FC<DeviceListProps> = (props: DeviceListProps) => {
   )
 }
 
-export default DeviceList
+export default PerformanceList

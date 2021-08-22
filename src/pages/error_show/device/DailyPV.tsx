@@ -1,6 +1,6 @@
 import MyEcharts from '@/components/common/myEcharts'
 import React, { useEffect, useState } from 'react'
-import { Card, InputNumber, Select } from 'antd'
+import { Card, InputNumber, Select, Space } from 'antd'
 import api from '@/api'
 import dayjs from 'dayjs'
 import './DailyPV.less'
@@ -31,7 +31,7 @@ const DailyPV: React.FC<DailyPVProps> = React.memo((props: DailyPVProps) => {
       series: [{
         data: series,
         type: 'line',
-        symbolSize: 16
+        symbolSize: 12
       }]
     }
   }
@@ -84,15 +84,17 @@ const DailyPV: React.FC<DailyPVProps> = React.memo((props: DailyPVProps) => {
   return (
     <div className={'dailyPV-wrapper'}>
       <Card>
-        <span>最近</span>
-        <InputNumber value={hourOrDay} min={1} max={48} style={{ width: '60px' }} size={'small'}
-                     onChange={(value) => changeInput(value)}/>
-        <Select defaultValue="hour" style={{ width: 80 }} size={'small'}
-                onChange={handleSelectChange}>
-          <Select.Option value="hour">小时</Select.Option>
-          <Select.Option value="day">天</Select.Option>
-        </Select>
-        <span>PV量</span>
+        <Space>
+          <span>最近</span>
+          <InputNumber value={hourOrDay} min={1} max={48} style={{ width: '60px' }} size={'small'}
+                       onChange={(value) => changeInput(value)}/>
+          <Select defaultValue="hour" style={{ width: 80 }} size={'small'}
+                  onChange={handleSelectChange}>
+            <Select.Option value="hour">小时</Select.Option>
+            <Select.Option value="day">天</Select.Option>
+          </Select>
+          <span>PV量</span>
+        </Space>
         <MyEcharts option={getOption()}
                    style={{ width: '100%', height: '400px' }}/>
       </Card>

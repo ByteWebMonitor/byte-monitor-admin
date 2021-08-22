@@ -30,5 +30,11 @@ export default {
   },
   getDeviceList(body:object){
     return $axios.post('https://qcgtsp.app.cloudendpoint.cn/api/device/getAllItemList', body)
-  }
+  },
+  getPerformanceList(body:object){
+    return $axios.post('https://qcgtsp.app.cloudendpoint.cn/api/performance/getAllItemList', body)
+  },
+  getPerformanceAvg(body:object){
+    return $axios.post('https://qcgtsp.app.cloudendpoint.cn/api/performance/statXMinAvg', body)
+  },
 }

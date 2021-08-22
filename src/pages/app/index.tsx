@@ -77,6 +77,7 @@ const App: React.FC<Props> = React.memo(({
           <Button onClick={()=>onClickDetail(record)} size={'small'}>详情</Button>
           <Button onClick={()=>onClickErrorLog(record)} size={'small'}>错误日志</Button>
           <Button onClick={()=>onClickDeviceList(record)} size={'small'}>设备统计</Button>
+          <Button onClick={()=>onClickPerformanceList(record)} size={'small'}>性能统计</Button>
         </Space>
       ),
     }
@@ -121,6 +122,7 @@ const App: React.FC<Props> = React.memo(({
   const onChangeAppDesc = (e) => {
     setFormData({ ...formData, app_desc: e.target.value })
   }
+
   const onClickSubmit = () => {
     form.validateFields().then(validateRes => {
       api.addApp(formData).then(res => {
@@ -145,6 +147,9 @@ const App: React.FC<Props> = React.memo(({
   }
   const onClickDeviceList=(record)=>{
     history.push(`/deviceList?app_id=${record.app_id}`)
+  }
+  const onClickPerformanceList=(record)=>{
+    history.push(`/performanceList?app_id=${record.app_id}`)
   }
   return (
     <div className={'app-wrapper'}>

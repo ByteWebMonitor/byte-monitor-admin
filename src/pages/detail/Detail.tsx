@@ -7,6 +7,7 @@ import { url2Map } from '@/utils'
 import { useLocation } from 'react-router-dom'
 import BrowserAndOsPV from '@/pages/error_show/device/BrowserAndOsPV'
 import DailyPV from '@/pages/error_show/device/DailyPV'
+import PerformanceAvg from '@/pages/performance/PerformanceAvg'
 
 interface Props extends ReduxProps {}
 
@@ -18,10 +19,16 @@ const Detail: React.FC<Props> = React.memo(() => {
     <>
       <BrowserAndOsPV
         // @ts-ignore
-        appId={appId}/>
+        appId={appId}
+      />
       <DailyPV
         // @ts-ignore
-        appId={appId}/>
+        appId={appId}
+      />
+      <PerformanceAvg
+        // @ts-ignore
+        appId={appId}
+      />
     </>
   )
 })

@@ -16,8 +16,6 @@ const MyEcharts: FC<Props> = ({
   const options = {
     ...option,
     grid: {
-      left: '4%',
-      right: '2%',
       top: '6%',
       bottom: '8%'
     }
