@@ -1,8 +1,9 @@
 import Home from '@/pages/home'
 import App from '@/pages/app'
 import ErrorPage from '@/pages/public/errorPage'
-import Error_log from '@/pages/error_show/error_log'
+import ErrorLog from '@/pages/error_show/error_log'
 import Detail from '@/pages/detail/Detail'
+import DeviceList from '@/pages/error_show/device/DeviceList'
 
 /**
  * path 跳转的路径
@@ -30,18 +31,16 @@ const menus = [
     component: Detail
   },
   {
-    path: '/error_show',
-    name: '错误信息展示',
-    key: 'error',
-    routes:[
-      {
-        path:'/error_show/img3',
-        name:'错误日记',
-        exact: true,
-        key:'error:errorDaily',
-        component:Error_log
-      },
-    ]
+    path: '/errorLog',
+    name: '错误日志',
+    key: 'errorLog',
+    component: ErrorLog
+  },
+  {
+    path: '/deviceList',
+    name: '设备日志',
+    key: 'deviceList',
+    component: DeviceList
   },
   {
     path: '/403',

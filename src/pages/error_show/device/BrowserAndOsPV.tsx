@@ -156,14 +156,14 @@ const BrowserAndOsPV: React.FC<BrowserAndOsPVProps> = React.memo((props: Browser
       dataIndex: 'value',
       key: 'value',
       align: 'center',
-      sorter: (a, b) => a - b
+      sorter: (a, b) => a.value - b.value
     },
     {
       title: '占比',
       dataIndex: 'proportion',
       key: 'proportion',
       align: 'center',
-      sorter: (a, b) => parseFloat(a) - parseFloat(b)
+      sorter: (a, b) => parseFloat(a.proportion) - parseFloat(b.proportion)
     },
   ]
   const osColumns = [
@@ -205,7 +205,7 @@ const BrowserAndOsPV: React.FC<BrowserAndOsPVProps> = React.memo((props: Browser
             <div className={'browserAndOsPV-echarts'}>
               <MyEcharts
                 option={getBrowserOption()}
-                style={{ width: '100%', height: '200px' }}
+                style={{ width: '100%', height: '250px' }}
               />
             </div>
             <div className={'browserAndOsPV-table'}>
@@ -221,7 +221,7 @@ const BrowserAndOsPV: React.FC<BrowserAndOsPVProps> = React.memo((props: Browser
             <div className={'browserAndOsPV-echarts'}>
               <MyEcharts
                 option={getOsOption()}
-                style={{ width: '100%', height: '200px' }}
+                style={{ width: '100%', height: '250px' }}
               />
             </div>
             <div className={'browserAndOsPV-table'}>

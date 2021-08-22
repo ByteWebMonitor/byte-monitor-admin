@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import './index.less'
+import './DeviceList.less'
 import { Table, Descriptions } from 'antd'
 import api from '@/api'
 import { url2Map } from '@/utils'
 import { useLocation } from 'react-router-dom'
 
-interface ErrorLogProps {
+interface DeviceListProps {
   appId?: String
 }
 
-const ErrorLog: React.FC<ErrorLogProps> = (props: ErrorLogProps) => {
+const DeviceList: React.FC<DeviceListProps> = (props: DeviceListProps) => {
   const params = url2Map(useLocation().search)
   const appIdFromUrl = params?.get('app_id')
   const limit = 10
@@ -20,27 +20,33 @@ const ErrorLog: React.FC<ErrorLogProps> = (props: ErrorLogProps) => {
 
   const columns = [
     {
-      title: 'error_type',
-      dataIndex: 'type',
-      key: 'type',
-      align: 'center'
-    },
-    {
       title: 'app_id',
       dataIndex: 'app_id',
       key: 'app_id',
       align: 'center'
     },
     {
-      title: 'user_id',
-      dataIndex: 'user_id',
-      key: 'user_id',
+      title: 'device_type',
+      dataIndex: 'deviceType',
+      key: 'deviceType',
       align: 'center'
     },
     {
-      title: 'amount',
-      dataIndex: 'amount',
-      key: 'amount',
+      title: 'os',
+      dataIndex: 'OS',
+      key: 'OS',
+      align: 'center'
+    },
+    {
+      title: 'browser',
+      dataIndex: 'browser',
+      key: 'browser',
+      align: 'center'
+    },
+    {
+      title: 'user_id',
+      dataIndex: 'user_id',
+      key: 'user_id',
       align: 'center'
     },
     {
@@ -56,8 +62,8 @@ const ErrorLog: React.FC<ErrorLogProps> = (props: ErrorLogProps) => {
   }
 
   useEffect(() => {
-    const getErrorLog = () => {
-      api.getErrorLog({ app_id: appIdFromUrl, skip, limit }).then(res => {
+    const getDeviceList = () => {
+      api.getDeviceList({ app_id: appIdFromUrl, skip, limit }).then(res => {
         if (res.data.code === 20000) {
           setTotal(res.data.total)
           setData(res.data.ItemList.map(item => {
@@ -70,19 +76,19 @@ const ErrorLog: React.FC<ErrorLogProps> = (props: ErrorLogProps) => {
         setLoading(false)
       })
     }
-    getErrorLog()
+    getDeviceList()
     // eslint-disable-next-line
   }, [skip])
+
   const expandedRowRender = (record) => {
     return (
-      <Descriptions>
-        <Descriptions.Item label="_id">{record._id}</Descriptions.Item>
-        <Descriptions.Item label="error_info">{record.error_info}</Descriptions.Item>
-        <Descriptions.Item label="error_url">{record.error_url}</Descriptions.Item>
-        <Descriptions.Item label="error_row">{record.error_row}</Descriptions.Item>
-        <Descriptions.Item label="error_col">{record.error_col}</Descriptions.Item>
-        <Descriptions.Item label="error_extra">{JSON.stringify(record.error_extra)}</Descriptions.Item>
-        <Descriptions.Item label="hash">{record.hash}</Descriptions.Item>
+      <Descriptions column={6}>
+        <Descriptions.Item label="_id" span={2}>{record._id}</Descriptions.Item>
+        <Descriptions.Item label="browserInfo" span={4}>{record.browserInfo}</Descriptions.Item>
+        <Descriptions.Item label="orientation" span={2}>{record.orientation}</Descriptions.Item>
+        <Descriptions.Item label="language" span={4}>{JSON.stringify(record.language)}</Descriptions.Item>
+        <Descriptions.Item label="screenHeight" span={2}>{record.screenHeight}</Descriptions.Item>
+        <Descriptions.Item label="screenWidth" span={2}>{record.screenWidth}</Descriptions.Item>
       </Descriptions>
     )
   }
@@ -109,4 +115,4 @@ const ErrorLog: React.FC<ErrorLogProps> = (props: ErrorLogProps) => {
   )
 }
 
-export default ErrorLog
+export default DeviceList

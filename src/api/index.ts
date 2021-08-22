@@ -24,5 +24,11 @@ export default {
   },
   getHours(body:object){
     return $axios.post('https://qcgtsp.app.cloudendpoint.cn/api/device/statXHourPerHourPv', body)
+  },
+  getErrorLog(body:object){
+    return $axios.post('https://qcgtsp.app.cloudendpoint.cn/api/error/getAllItemList', body)
+  },
+  getDeviceList(body:object){
+    return $axios.post('https://qcgtsp.app.cloudendpoint.cn/api/device/getAllItemList', body)
   }
 }
