@@ -26,7 +26,6 @@
     "classnames": "^2.2.6",
     "connected-react-router": "^6.5.2",
     "cross-env": "^7.0.2",
-    "dayjs": "^1.10.6",
     "echarts": "^4.7.0",
     "echarts-for-react": "^2.0.15-beta.1",
     "less": "^3.11.1",
@@ -81,7 +80,7 @@
     "husky": "^3.0.9",
     "lint-staged": "^9.4.2",
     "prettier": "1.18.2",
-    "react-app-rewired": "^2.1.5",
+    "react-app-rewired": "^2.1.8",
     "redux-devtools": "^3.5.0",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^4.41.0",
@@ -95,5 +94,7 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
-  }
+  },
+  "main": "index.js",
+  "license": "MIT"
 }
