@@ -9,61 +9,25 @@ const menus = [
     routes: []
   },
   {
-    path: '/user',
-    name: '用户管理',
-    key: 'user',
-    type: 'subMenu',
-    icon: UserOutlined,
-    iconfont: 'icon-xiaoshouzongjian',
-    routes: [
-      {
-        path: '/user/list',
-        name: '用户列表',
-        key: 'user:list:view'
-      }
-    ]
-  },
-  {
-    path: '/role',
-    name: '角色管理',
-    key: 'role',
-    type: 'subMenu',
-    icon: AuditOutlined,
-    routes: [
-      {
-        path: '/role/list',
-        name: '角色列表',
-        key: 'role:list:view'
-      }
-    ]
-  },
-  {
-    path: '/map',
-    name: '地图',
-    key: 'map',
-    icon: HomeOutlined,
-    routes: []
-  },
-  {
     path: '/error_show',
     name: '错误',
     key: 'error',
     type: 'subMenu',
     routes: [
       {
-        path:'/error_show/img',
-        name:'可视化1',
-        key:'error:img_show',
+        path: '/error_show/img',
+        name: '一段时间内的访问量',
+        key: 'error:visit',
       },
       {
-        path:'/error_show/img2',
-        name:'可视化2',
-        key:'error:img_show1',
+        path: '/error_show/img2',
+        name: '操作系统与浏览器占比',
+        key: 'error:os',
       },
       {
-        path:'/error_show/img3',
-        name:'可视化3',
-        key:'error:img_show',
+        path: '/error_show/img3',
+        name: '错误日记',
+        key: 'error:errorDaily',
       }
     ]
   }
