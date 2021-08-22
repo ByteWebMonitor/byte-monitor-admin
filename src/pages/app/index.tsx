@@ -3,7 +3,7 @@ import './index.less'
 import 'echarts/map/js/china'
 import { connect } from 'react-redux'
 import * as actions from '@/store/actions'
-import { Button, Form, Input, Modal, notification, Table } from 'antd'
+import { Button, Form, Input, Modal, notification, Space, Table } from 'antd'
 import api from '@/api'
 import dayjs from 'dayjs'
 import { useHistory } from 'react-router-dom'
@@ -47,7 +47,8 @@ const App: React.FC<Props> = React.memo(({
       title: 'app_desc',
       dataIndex: 'app_desc',
       key: 'app_desc',
-      align: 'center'
+      align: 'center',
+      width: '100px'
     },
     {
       title: 'createdAt',
@@ -70,8 +71,13 @@ const App: React.FC<Props> = React.memo(({
     {
       title: '操作',
       key: 'action',
+      align: 'center',
       render: (record) => (
-        <Button onClick={()=>onClickDetail(record)}>详情</Button>
+        <Space>
+          <Button onClick={()=>onClickDetail(record)} size={'small'}>详情</Button>
+          <Button onClick={()=>onClickErrorLog(record)} size={'small'}>错误日志</Button>
+          <Button onClick={()=>onClickDeviceList(record)} size={'small'}>设备统计</Button>
+        </Space>
       ),
     }
   ]
@@ -133,7 +139,12 @@ const App: React.FC<Props> = React.memo(({
   }
   const onClickDetail = (record) => {
     history.push(`/detail?app_id=${record.app_id}`)
-    console.log(record.app_id)
+  }
+  const onClickErrorLog=(record)=>{
+    history.push(`/errorLog?app_id=${record.app_id}`)
+  }
+  const onClickDeviceList=(record)=>{
+    history.push(`/deviceList?app_id=${record.app_id}`)
   }
   return (
     <div className={'app-wrapper'}>

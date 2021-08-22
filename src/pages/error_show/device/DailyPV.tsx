@@ -19,7 +19,7 @@ const DailyPV: React.FC<DailyPVProps> = React.memo((props: DailyPVProps) => {
     return {
       color: ['#3398DB'],
       tooltip: {
-        trigger: 'item'
+        trigger: 'axis'
       },
       xAxis: {
         type: 'category',
@@ -30,7 +30,8 @@ const DailyPV: React.FC<DailyPVProps> = React.memo((props: DailyPVProps) => {
       },
       series: [{
         data: series,
-        type: 'line'
+        type: 'line',
+        symbolSize: 16
       }]
     }
   }
@@ -43,7 +44,7 @@ const DailyPV: React.FC<DailyPVProps> = React.memo((props: DailyPVProps) => {
       let temp2 = []
       for (let i = 0; i < res.data['list'].length; i++) {
         temp1.push(res.data['list'][i]['num'])
-        temp2.push(dayjs(res.data['list'][i]['date']).format('MM-DD hh:mm:ss'))
+        temp2.push(dayjs(res.data['list'][i]['date']).format('M-D H:m'))
       }
       setXAxisData(temp2)
       setSeries(temp1)
@@ -58,7 +59,7 @@ const DailyPV: React.FC<DailyPVProps> = React.memo((props: DailyPVProps) => {
       let temp2 = []
       for (let i = 0; i < res.data['list'].length; i++) {
         temp1.push(res.data['list'][i]['num'])
-        temp2.push(dayjs(res.data['list'][i]['date']).format('MM-DD'))
+        temp2.push(dayjs(res.data['list'][i]['date']).format('M-D'))
       }
       setXAxisData(temp2)
       setSeries(temp1)
@@ -66,16 +67,12 @@ const DailyPV: React.FC<DailyPVProps> = React.memo((props: DailyPVProps) => {
   }
   const changeInput = (value) => {
     setHourOrDay(value)
-    if (selectType === 'hour') {
-      getHourPV()
-    } else if (selectType === 'day') {
-      getDayPV()
-    }
   }
 
   const handleSelectChange = (value) => {
     setSelectType(value)
   }
+
   useEffect(() => {
     if (selectType === 'hour') {
       getHourPV()
@@ -83,12 +80,12 @@ const DailyPV: React.FC<DailyPVProps> = React.memo((props: DailyPVProps) => {
       getDayPV()
     }
     // eslint-disable-next-line
-  }, [selectType])
+  }, [selectType,hourOrDay])
   return (
     <div className={'dailyPV-wrapper'}>
       <Card>
         <span>最近</span>
-        <InputNumber value={hourOrDay} max={72} style={{ width: '60px' }} size={'small'}
+        <InputNumber value={hourOrDay} min={1} max={48} style={{ width: '60px' }} size={'small'}
                      onChange={(value) => changeInput(value)}/>
         <Select defaultValue="hour" style={{ width: 80 }} size={'small'}
                 onChange={handleSelectChange}>
