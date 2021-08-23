@@ -169,27 +169,27 @@ const App: React.FC<Props> = React.memo(({
           form={form}
         >
           <Form.Item
-            label="admin_name"
+            label="管理员"
             name="admin_name"
             rules={[{ required: true, message: '不能为空！', validateTrigger: 'blur' }]}
           >
             <Input disabled/>
           </Form.Item>
           <Form.Item
-            label="app_id"
+            label="appId"
             name="app_id"
             rules={[{ required: true, message: '不能为空！', validateTrigger: 'blur' }]}
           >
             <Input allowClear onChange={onChangeAppId}/>
           </Form.Item>
           <Form.Item
-            label="app_name"
+            label="app名称"
             name="app_name"
             rules={[{ required: true, message: '不能为空！' }]}
           >
             <Input allowClear onChange={onChangeAppName}/>
           </Form.Item>
-          <Form.Item label="app_desc" name="app_desc">
+          <Form.Item label="app描述" name="app_desc">
             <Input allowClear onChange={onChangeAppDesc}/>
           </Form.Item>
           <Form.Item wrapperCol={{ offset: 10, span: 16 }}>
