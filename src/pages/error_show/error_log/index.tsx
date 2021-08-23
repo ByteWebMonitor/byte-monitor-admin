@@ -20,31 +20,31 @@ const ErrorLog: React.FC<ErrorLogProps> = (props: ErrorLogProps) => {
 
   const columns = [
     {
-      title: 'error_type',
+      title: '错误类型',
       dataIndex: 'type',
       key: 'type',
       align: 'center'
     },
     {
-      title: 'app_id',
+      title: 'appId',
       dataIndex: 'app_id',
       key: 'app_id',
       align: 'center'
     },
     {
-      title: 'user_id',
+      title: '用户id',
       dataIndex: 'user_id',
       key: 'user_id',
       align: 'center'
     },
     {
-      title: 'amount',
+      title: '数量',
       dataIndex: 'amount',
       key: 'amount',
       align: 'center'
     },
     {
-      title: 'time',
+      title: '发生时间',
       dataIndex: 'time',
       key: 'time',
       align: 'center'
@@ -75,14 +75,14 @@ const ErrorLog: React.FC<ErrorLogProps> = (props: ErrorLogProps) => {
   }, [skip])
   const expandedRowRender = (record) => {
     return (
-      <Descriptions>
-        <Descriptions.Item label="_id">{record._id}</Descriptions.Item>
-        <Descriptions.Item label="error_info">{record.error_info}</Descriptions.Item>
-        <Descriptions.Item label="error_url">{record.error_url}</Descriptions.Item>
-        <Descriptions.Item label="error_row">{record.error_row}</Descriptions.Item>
-        <Descriptions.Item label="error_col">{record.error_col}</Descriptions.Item>
-        <Descriptions.Item label="error_extra">{JSON.stringify(record.error_extra)}</Descriptions.Item>
-        <Descriptions.Item label="hash">{record.hash}</Descriptions.Item>
+      <Descriptions column={6}>
+        <Descriptions.Item label="记录id" span={2}>{record._id}</Descriptions.Item>
+        <Descriptions.Item label="错误信息" span={4}>{record.error_info}</Descriptions.Item>
+        <Descriptions.Item label="错误url" span={6}>{record.error_url}</Descriptions.Item>
+        <Descriptions.Item label="行" span={2}>{record.error_row}</Descriptions.Item>
+        <Descriptions.Item label="列" span={4}>{record.error_col}</Descriptions.Item>
+        <Descriptions.Item label="备注" span={2}>{JSON.stringify(record.error_extra)}</Descriptions.Item>
+        <Descriptions.Item label="hash" span={4}>{record.hash}</Descriptions.Item>
       </Descriptions>
     )
   }

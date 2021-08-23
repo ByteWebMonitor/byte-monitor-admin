@@ -20,37 +20,37 @@ const DeviceList: React.FC<DeviceListProps> = (props: DeviceListProps) => {
 
   const columns = [
     {
-      title: 'app_id',
+      title: 'appId',
       dataIndex: 'app_id',
       key: 'app_id',
       align: 'center'
     },
     {
-      title: 'device_type',
+      title: '设备类型',
       dataIndex: 'deviceType',
       key: 'deviceType',
       align: 'center'
     },
     {
-      title: 'os',
+      title: '操作系统',
       dataIndex: 'OS',
       key: 'OS',
       align: 'center'
     },
     {
-      title: 'browser',
+      title: '浏览器',
       dataIndex: 'browser',
       key: 'browser',
       align: 'center'
     },
     {
-      title: 'user_id',
+      title: '用户id',
       dataIndex: 'user_id',
       key: 'user_id',
       align: 'center'
     },
     {
-      title: 'time',
+      title: '时间',
       dataIndex: 'time',
       key: 'time',
       align: 'center'
@@ -80,15 +80,22 @@ const DeviceList: React.FC<DeviceListProps> = (props: DeviceListProps) => {
     // eslint-disable-next-line
   }, [skip])
 
+  const help = (str) => {
+    const index = str.indexOf('&nbsp;')
+    if (index !== -1) {
+      return str.slice(0, index) + ',' + str.slice(index + 12)
+    }
+    return str
+  }
   const expandedRowRender = (record) => {
     return (
       <Descriptions column={6}>
-        <Descriptions.Item label="_id" span={2}>{record._id}</Descriptions.Item>
-        <Descriptions.Item label="browserInfo" span={4}>{record.browserInfo}</Descriptions.Item>
-        <Descriptions.Item label="orientation" span={2}>{record.orientation}</Descriptions.Item>
-        <Descriptions.Item label="language" span={4}>{record.language}</Descriptions.Item>
-        <Descriptions.Item label="screenHeight" span={2}>{record.screenHeight}</Descriptions.Item>
-        <Descriptions.Item label="screenWidth" span={2}>{record.screenWidth}</Descriptions.Item>
+        <Descriptions.Item label="记录id" span={2}>{record._id}</Descriptions.Item>
+        <Descriptions.Item label="浏览器信息" span={4}>{help(record.browserInfo)}</Descriptions.Item>
+        <Descriptions.Item label="屏幕朝向" span={2}>{record.orientation}</Descriptions.Item>
+        <Descriptions.Item label="语言" span={4}>{record.language}</Descriptions.Item>
+        <Descriptions.Item label="屏幕高度" span={2}>{record.screenHeight}</Descriptions.Item>
+        <Descriptions.Item label="屏幕宽度" span={2}>{record.screenWidth}</Descriptions.Item>
       </Descriptions>
     )
   }

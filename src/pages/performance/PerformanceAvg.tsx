@@ -19,6 +19,8 @@ const PerformanceAvg: React.FC<PerformanceAvgProps> = React.memo((props: Perform
   const [loadPageData, setLoadPageData] = useState([])
 
   const getOption = () => {
+    console.log(loadPageData)
+    console.log(transparentData)
     return {
       title: {
         text: '页面加载瀑布图'
@@ -149,9 +151,9 @@ const PerformanceAvg: React.FC<PerformanceAvgProps> = React.memo((props: Perform
         setTtfbData(['-', ttfbTime.toFixed(4), '-', '-', '-'])
         setLoadPageData([loadPageTime.toFixed(4), '-', '-', '-', '-',])
         setTransparentData([
-          redirectTime.toFixed(4) + dnsTime.toFixed(4) + reqTime.toFixed(4) + ttfbTime.toFixed(4),
-          redirectTime.toFixed(4) + dnsTime.toFixed(4) + reqTime.toFixed(4),
-          redirectTime.toFixed(4) + dnsTime.toFixed(4),
+          (redirectTime + dnsTime + reqTime + ttfbTime).toFixed(4),
+          (redirectTime + dnsTime + reqTime).toFixed(4),
+          (redirectTime + dnsTime).toFixed(4),
           redirectTime.toFixed(4),
           '-'
         ])
@@ -170,7 +172,7 @@ const PerformanceAvg: React.FC<PerformanceAvgProps> = React.memo((props: Perform
     <div className={'dailyPV-wrapper'}>
       <span>最近</span>
       <Slider defaultValue={720} max={14400} style={{ width: '30%', display: 'inline-block', marginBottom: '0' }}
-              tooltipVisible onChange={debounce(onChangeSlider, 1000)}/>
+              tooltipVisible onChange={debounce(onChangeSlider, 300)}/>
       <span>分钟app平均性能</span>
       <Card>
         <MyEcharts option={getOption()} style={{ width: '100%', height: '400px' }}/>

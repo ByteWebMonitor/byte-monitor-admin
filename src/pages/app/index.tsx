@@ -33,25 +33,25 @@ const App: React.FC<Props> = React.memo(({
       align: 'center'
     },
     {
-      title: 'admin_name',
+      title: '管理员',
       dataIndex: 'admin_name',
       align: 'center'
     },
     {
-      title: 'app_name',
+      title: 'app名称',
       dataIndex: 'app_name',
       key: 'app_name',
       align: 'center'
     },
     {
-      title: 'app_desc',
+      title: 'app描述',
       dataIndex: 'app_desc',
       key: 'app_desc',
       align: 'center',
       width: '100px'
     },
     {
-      title: 'createdAt',
+      title: '创建时间',
       dataIndex: 'createdAt',
       key: 'createdAt',
       align: 'center',
@@ -60,7 +60,7 @@ const App: React.FC<Props> = React.memo(({
       }
     },
     {
-      title: 'updatedAt',
+      title: '更新时间',
       dataIndex: 'updatedAt',
       key: 'updatedAt',
       align: 'center',

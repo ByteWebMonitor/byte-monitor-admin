@@ -12,7 +12,7 @@ interface DailyPVProps {
 const DailyPV: React.FC<DailyPVProps> = React.memo((props: DailyPVProps) => {
   const appId = props.appId
   const [selectType, setSelectType] = useState('hour')
-  const [hourOrDay, setHourOrDay] = useState(12)
+  const [hourOrDay, setHourOrDay] = useState(24)
   const [xAxisData, setXAxisData] = useState([])
   const [series, setSeries] = useState([])
   const getOption = () => {

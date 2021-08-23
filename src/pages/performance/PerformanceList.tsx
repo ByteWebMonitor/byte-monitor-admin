@@ -20,37 +20,37 @@ const PerformanceList: React.FC<PerformanceListProps> = (props: PerformanceListP
 
   const columns = [
     {
-      title: 'app_id',
+      title: 'appId',
       dataIndex: 'app_id',
       key: 'app_id',
       align: 'center'
     },
     {
-      title: 'url',
+      title: '地址',
       dataIndex: 'url',
       key: 'url',
       align: 'center'
     },
     {
-      title: 'ttfbTime',
+      title: '等待初始响应时间',
       dataIndex: 'ttfbTime',
       key: 'ttfbTime',
       align: 'center'
     },
     {
-      title: 'loadPageTime',
+      title: '加载页面时间',
       dataIndex: 'loadPageTime',
       key: 'loadPageTime',
       align: 'center'
     },
     {
-      title: 'user_id',
+      title: '用户id',
       dataIndex: 'user_id',
       key: 'user_id',
       align: 'center'
     },
     {
-      title: 'time',
+      title: '时间',
       dataIndex: 'time',
       key: 'time',
       align: 'center'
@@ -84,10 +84,10 @@ const PerformanceList: React.FC<PerformanceListProps> = (props: PerformanceListP
     return (
       <div>
         <Descriptions column={8}>
-          <Descriptions.Item label="_id" span={2}>{record._id}</Descriptions.Item>
-          <Descriptions.Item label="redirectTime" span={2}>{record.redirectTime}</Descriptions.Item>
-          <Descriptions.Item label="dnsTime" span={2}>{record.dnsTime}</Descriptions.Item>
-          <Descriptions.Item label="reqTime" span={2}>{record.reqTime}</Descriptions.Item>
+          <Descriptions.Item label="记录id" span={2}>{record._id}</Descriptions.Item>
+          <Descriptions.Item label="重定向时间" span={2}>{record.redirectTime}</Descriptions.Item>
+          <Descriptions.Item label="DNS查找时间" span={2}>{record.dnsTime}</Descriptions.Item>
+          <Descriptions.Item label="请求时间" span={2}>{record.reqTime}</Descriptions.Item>
         </Descriptions>
       </div>
     )
