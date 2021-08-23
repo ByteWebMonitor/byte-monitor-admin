@@ -4,6 +4,7 @@ import { Table, Descriptions } from 'antd'
 import api from '@/api'
 import { url2Map } from '@/utils'
 import { useLocation } from 'react-router-dom'
+import dayjs from 'dayjs'
 
 interface ErrorLogProps {
   appId?: String
@@ -47,7 +48,8 @@ const ErrorLog: React.FC<ErrorLogProps> = (props: ErrorLogProps) => {
       title: '发生时间',
       dataIndex: 'time',
       key: 'time',
-      align: 'center'
+      align: 'center',
+      render: (value) => {return dayjs(value).format('YYYY-M-D H:mm:ss')}
     },
   ]
 

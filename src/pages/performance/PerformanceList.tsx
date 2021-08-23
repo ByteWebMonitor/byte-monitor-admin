@@ -4,6 +4,7 @@ import { Table, Descriptions } from 'antd'
 import api from '@/api'
 import { url2Map } from '@/utils'
 import { useLocation } from 'react-router-dom'
+import dayjs from 'dayjs'
 
 interface PerformanceListProps {
   appId?: String
@@ -53,7 +54,8 @@ const PerformanceList: React.FC<PerformanceListProps> = (props: PerformanceListP
       title: '时间',
       dataIndex: 'time',
       key: 'time',
-      align: 'center'
+      align: 'center',
+      render: (value) => {return dayjs(value).format('YYYY-M-D H:mm:ss')}
     },
   ]
 

@@ -23,8 +23,8 @@ const Home: FC = () => {
               <li>使用最新的 React Hooks 开发</li>
               <li>使用 Redux 进行全局状态管理</li>
               <li>基于 Ant Design 体系精心设计</li>
-              <li>使用字节轻服务Serverless部署</li>
-              <li>使用 Github Actions 进行自动化部署</li>
+              <li>使用 Echarts 图表展示数据</li>
+              <li>使用 Github Actions 自动化部署到轻服务Serverless</li>
             </ul>
           </Card>
         </Col>
